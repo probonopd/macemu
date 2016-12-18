@@ -59,7 +59,7 @@ delete_blacklisted
 # desktopintegration asks the user on first run to install a menu item
 ########################################################################
 
-get_desktopintegration $LOWERAPP
+get_desktopintegration $APP
 
 ########################################################################
 # Determine the version of the app; also include needed glibc version
