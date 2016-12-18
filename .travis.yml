@@ -10,7 +10,7 @@ script:
   - strip SheepShaver
   - sudo make install
   - find /shp
-  - ./Linux/AppImage.sh
+  - bash -ex ./Linux/AppImage.sh
   - cd -
   - cd BasiliskII/src/Unix/
   - CXXFLAGS="-fno-stack-protector -g -O2" CFLAGS="-fno-stack-protector -O2" ./autogen.sh --prefix=/bas --enable-sdl-video --enable-sdl-audio --disable-vosf --enable-jit-compiler
