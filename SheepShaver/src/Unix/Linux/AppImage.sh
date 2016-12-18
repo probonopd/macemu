@@ -31,6 +31,7 @@ cp -r /shp/* ./usr/
 
 get_apprun
 wget -c "https://raw.githubusercontent.com/rpmfusion/SheepShaver/master/SheepShaver.desktop"
+sed -i -e 's|Sheep Shaver|SheepShaver|g' SheepShaver.desktop
 wget -c "https://github.com/rpmfusion/SheepShaver/raw/master/SheepShaver.png"
 
 ########################################################################
