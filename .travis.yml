@@ -5,7 +5,7 @@ script:
   - cd SheepShaver/src/Unix/
   - VERSION=$(printf "%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)")
   - echo VERSION: $VERSION
-  - CXXFLAGS="-fno-stack-protector -g -O2" CFLAGS="-fno-stack-protector -O2" ./autogen.sh --prefix=/shs
+  - CXXFLAGS="-fno-stack-protector -g -O2" CFLAGS="-fno-stack-protector -O2" ./autogen.sh --prefix=/shs --enable-sdl-video --enable-sdl-audio --disable-vosf --enable-jit-compiler
   - make
   - strip SheepShaver
   - sudo make install
