@@ -6,6 +6,7 @@
 # For more information, see http://appimage.org/
 ########################################################################
 
+OWD=$(pwd)
 export ARCH=$(arch)
 
 APP=SheepShaver
@@ -95,3 +96,5 @@ generate_type2_appimage
 
 transfer ../out/*
 echo "AppImage has been uploaded to the URL above; use something like GitHub Releases for permanent storage"
+
+cd "$OWD"
