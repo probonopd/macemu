@@ -68,7 +68,9 @@ get_desktopintegration $APP
 # Determine the version of the app; also include needed glibc version
 ########################################################################
 
+cd "$OWD"
 VER1=$(printf "%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)")
+cd -
 GLIBC_NEEDED=$(glibc_needed)
 VERSION=$VER1-glibc$GLIBC_NEEDED
 
