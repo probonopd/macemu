@@ -3,14 +3,18 @@ sudo: true
 script:
   - sudo apt-get install automake libx11-dev libpthread-stubs0-dev build-essential autoconf libgtk2.0-de
   - cd SheepShaver/src/Unix/
+  - VERSION=$(printf "%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)")
+  - echo VERSION: $VERSION
   - CXXFLAGS="-fno-stack-protector -g -O2" CFLAGS="-fno-stack-protector -O2" ./autogen.sh --prefix=/shs
   - make
+  - strip SheepShaver
   - sudo make install
   - find /shs
   - cd -
   - cd BasiliskII/src/Unix/
-  - CXXFLAGS="-fno-stack-protector -g -O2" CFLAGS="-fno-stack-protector -O2" ./autogen.sh --prefix=/bas
+  - CXXFLAGS="-fno-stack-protector -g -O2" CFLAGS="-fno-stack-protector -O2" ./autogen.sh --prefix=/bas --enable-sdl-video --enable-sdl-audio --disable-vosf --enable-jit-compiler
   - make
+  - strip BasiliskII
   - sudo make install
   - find /bas
   - cd -
