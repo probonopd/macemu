@@ -20,7 +20,7 @@ wget -q https://github.com/probonopd/AppImages/raw/master/functions.sh -O ./func
 
 cd $APP.AppDir
 
-sudo chown -R $USER /app/
+sudo chown -R $USER /shp/
 
 # SheepShaver had been installed to the PREFIX /shp before
 cp -r /shp/* ./usr/
