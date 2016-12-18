@@ -1,7 +1,7 @@
 sudo: true
 
 script:
-  - sudo apt-get install automake libx11-dev libpthread-stubs0-dev build-essential autoconf libgtk2.0-de
+  - sudo apt-get install automake libx11-dev libpthread-stubs0-dev build-essential autoconf libgtk2.0-de libsdl1.2-dev
   - cd SheepShaver/src/Unix/
   - VERSION=$(printf "%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)")
   - echo VERSION: $VERSION
