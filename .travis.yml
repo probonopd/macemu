@@ -16,4 +16,5 @@ script:
   - strip BasiliskII
   - sudo make install
   - find /bas
+  - bash -ex ./Linux/AppImage.sh
   - cd -
