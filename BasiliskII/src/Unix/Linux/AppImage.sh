@@ -57,11 +57,10 @@ copy_deps
 # https://github.com/probonopd/AppImages/blob/master/excludelist
 delete_blacklisted
 
-########################################################################
-# desktopintegration asks the user on first run to install a menu item
-########################################################################
-
-get_desktopintegration $APP
+# Workaround for:
+# Pango-WARNING **: failed to choose a font, expect ugly output.
+# engine-type='PangoRenderFc', script='common'
+rm -rf squashfs-root/usr/lib/x86_64-linux-gnu/libpango*
 
 ########################################################################
 # Determine the version of the app; also include needed glibc version
@@ -80,6 +79,12 @@ VERSION=$VER1-glibc$GLIBC_NEEDED
 find usr/ -type f -exec sed -i -e 's|/usr|././|g' {} \;
 find usr/ -type f -exec sed -i -e 's|/bas|././|g' {} \;
 find usr/ -type f -exec sed -i -e 's@././/bin/env@/usr/bin/env@g' {} \;
+
+########################################################################
+# desktopintegration asks the user on first run to install a menu item
+########################################################################
+
+get_desktopintegration $APP
 
 ########################################################################
 # AppDir complete
