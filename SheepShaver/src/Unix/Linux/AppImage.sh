@@ -66,8 +66,9 @@ get_desktopintegration $APP
 # Determine the version of the app; also include needed glibc version
 ########################################################################
 
+VER1=$(printf "%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)")
 GLIBC_NEEDED=$(glibc_needed)
-VERSION=${RELEASE_VERSION}-glibc$GLIBC_NEEDED
+VERSION=$VER1-glibc$GLIBC_NEEDED
 
 ########################################################################
 # Patch away absolute paths; it would be nice if they were relative
