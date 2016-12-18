@@ -32,13 +32,14 @@ cp -r /shp/* ./usr/
 get_apprun
 wget -c "https://raw.githubusercontent.com/rpmfusion/SheepShaver/master/SheepShaver.desktop"
 wget -c "https://github.com/rpmfusion/SheepShaver/raw/master/SheepShaver.png"
-wget -c "https://raw.githubusercontent.com/rpmfusion/SheepShaver/master/SheepShaver.appdata.xml"
 
 ########################################################################
 # Other appliaction-specific finishing touches
 ########################################################################
 
-
+# Get AppStream metadata
+mkdir -p usr/share/appdata/
+( cd usr/share/appdata/ ; wget -c "https://raw.githubusercontent.com/rpmfusion/SheepShaver/master/SheepShaver.appdata.xml" )
 
 ########################################################################
 # Copy in the dependencies that cannot be assumed to be available
