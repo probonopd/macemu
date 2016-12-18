@@ -60,7 +60,7 @@ delete_blacklisted
 # Workaround for:
 # Pango-WARNING **: failed to choose a font, expect ugly output.
 # engine-type='PangoRenderFc', script='common'
-rm -rf squashfs-root/usr/lib/x86_64-linux-gnu/libpango*
+rm -rf usr/lib/x86_64-linux-gnu/libpango*
 
 ########################################################################
 # Determine the version of the app; also include needed glibc version
