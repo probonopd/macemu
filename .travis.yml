@@ -3,7 +3,14 @@ sudo: true
 script:
   - sudo apt-get install automake libx11-dev libpthread-stubs0-dev build-essential autoconf libgtk2.0-de
   - cd SheepShaver/src/Unix/
-  - CXXFLAGS="-fno-stack-protector -g -O2" CFLAGS="-fno-stack-protector -O2" ./autogen.sh
+  - CXXFLAGS="-fno-stack-protector -g -O2" CFLAGS="-fno-stack-protector -O2" ./autogen.sh --prefix=/shs
   - make
-  - find .
-  
+  - sudo make install
+  - find /shs
+  - cd -
+  - cd BasiliskII/src/Unix/
+  - CXXFLAGS="-fno-stack-protector -g -O2" CFLAGS="-fno-stack-protector -O2" ./autogen.sh --prefix=/bas
+  - make
+  - sudo make install
+  - find /bas
+  - cd -
