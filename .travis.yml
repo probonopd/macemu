@@ -31,10 +31,30 @@ script:
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
   - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
   - ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage
+  - cd ../../../
+  # 
+  - cd SheepShaver/src/Unix
+  - NO_CONFIGURE=1 ./autogen.sh
+  - ./configure --prefix=/usr --enable-sdl-video --enable-sdl-audio --disable-vosf --disable-jit-compiler --with-x --with-gtk --with-mon
+  - make -j$(nproc)
+  # The following should be hosted inside this repository rather than grabbed from somewhere
+  - mkdir -p appdir/usr/share/applications/ ; wget "https://raw.githubusercontent.com/rpmfusion/SheepShaver/master/SheepShaver.desktop" -O appdir/usr/share/applications/SheepShaver.desktop
+  - sed -i -e 's|Sheep Shaver|SheepShaver|g' appdir/usr/share/applications/SheepShaver.desktop
+  - mkdir -p appdir/usr/share/icons/hicolor/128x128/apps ; wget "https://github.com/rpmfusion/SheepShaver/raw/master/SheepShaver.png" -O appdir/usr/share/icons/hicolor/128x128/apps/SheepShaver.png
+  - mkdir -p appdir/usr/share/appdata/ ; wget "https://raw.githubusercontent.com/rpmfusion/SheepShaver/master/SheepShaver.appdata.xml" -O appdir/usr/share/appdata/SheepShaver.appdata.xml
+  - make install DESTDIR=$(readlink -f appdir) ; find appdir/
+  - cd appdir
+  - find usr/ -type f -exec sed -i -e 's|/usr|././|g' {} \; # Patch away absolute paths; it would be nice if they were relative
+  - find usr/ -type f -exec sed -i -e 's@././/bin/env@/usr/bin/env@g' {} \; # Patch away absolute paths; it would be nice if they were relative
+  - cd ..
+  - wget -c https://github.com/AppImage/AppImageKit/releases/download/12/AppRun-x86_64 -O appdir/AppRun ; chmod +x appdir/AppRun # Workaround for patchelf failing to set rpath
+  - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
+  - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
+  - ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage
 
 after_success:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-  - bash upload.sh Basilisk_II*.AppImage*
+  - bash upload.sh Basilisk_II*.AppImage* SheepShaver*.AppImage*
   
 branches:
   except:
