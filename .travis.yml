@@ -27,6 +27,7 @@ script:
   - find usr/ -type f -exec sed -i -e 's|/usr|././|g' {} \; # Patch away absolute paths; it would be nice if they were relative
   - find usr/ -type f -exec sed -i -e 's@././/bin/env@/usr/bin/env@g' {} \; # Patch away absolute paths; it would be nice if they were relative
   - cd ..
+  - wget -c https://github.com/AppImage/AppImageKit/releases/download/12/AppRun-x86_64 -O appdir/AppRun ; chmod +x appdir/AppRun # Workaround for patchelf failing to set rpath
   - wget -c -nv "https://github.com/probonopd/linuxdeployqt/releases/download/continuous/linuxdeployqt-continuous-x86_64.AppImage"
   - chmod a+x linuxdeployqt-continuous-x86_64.AppImage
   - ./linuxdeployqt-continuous-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage
