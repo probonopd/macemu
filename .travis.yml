@@ -54,6 +54,8 @@ script:
 
 after_success:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+  - find . -type f -name 'Basilisk_II*.AppImage*' -exec mv {} . \;
+  - find . -type f -name 'SheepShaver*.AppImage*' -exec mv {} . \;
   - bash upload.sh Basilisk_II*.AppImage* SheepShaver*.AppImage*
   
 branches:
