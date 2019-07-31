@@ -47,7 +47,7 @@ script:
   - find usr/ -type f -exec sed -i -e 's|/usr|././|g' {} \; # Patch away absolute paths; it would be nice if they were relative
   - find usr/ -type f -exec sed -i -e 's@././/bin/env@/usr/bin/env@g' {} \; # Patch away absolute paths; it would be nice if they were relative
   - cd ..
-  - cp  ../../../BasiliskII/src/Unix/AppRun ./appdir/
+  - cp  ../../../BasiliskII/src/Unix/appdir/AppRun ./appdir/
   - cp  ../../../BasiliskII/src/Unix/linuxdeployqt-*-x86_64.AppImage .
   - ./linuxdeployqt-*-x86_64.AppImage appdir/usr/share/applications/*.desktop -appimage
   - cd ../../../
